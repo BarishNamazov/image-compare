@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>image-compare</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro&display=swap');
+    body {
+      font-family: 'Lato', sans-serif;
+      max-width: 45em;
+      line-height: 1.5;
+      margin: 0 auto;
+      padding: 1.5em;
+      background: hsl(210, 17%, 98%);
+    }
+    code {
+      font-family: 'Source Code Pro', monospace;
+      display: inline-block;
+      padding: 0.1em 0.1em;
+      color: hsla(70, 8%, 15%)
+    }
+    pre code {
+      background: hsl(70, 8%, 15%);
+      color: hsl(60, 30%, 96%);
+      padding: 0.2em 0.2em;
+      display: block;
+      overflow-x: auto;
+      max-width: 100%;
+      padding: 1em;
+    }
+    code a {
+      color: hsl(60, 30%, 96%);
+    }
+    a * {
+      
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>image-compare</h1>
+    <p><em>want to compare two images side by side with possibly applying some effects to them? say no more!</em></p>
+    <h2>installation</h2>
+    <p>add the following line of code to the cool project you are working on:</p>
+    <pre><code>&lt;script src=&quot;[insert js file link here]&quot;&gt;&lt;/script&gt;</code></pre>
+    <h2>usage</h2>
+    <p>now you can use <code>image-compare</code> like any other tag:</p>
+    <pre><code>&lt;image-compare alt=&quot;Alt text for comparison&quot; direction=&quot;horizontal&quot;&gt;
+  &lt;img src=&quot;cat.png&quot; slot=&quot;image-1&quot;/&gt;
+  &lt;img src=&quot;dog.png&quot; slot=&quot;image-2&quot;/&gt;
+&lt;/image-compare&gt;
+</code></pre>
+  <h3>attributes</h3>
+  <p>there are two reflected attribute properties: <code>alt</code> and <code>direction</code>. <code>alt</code> attribute is not visible and its purpose is to make this element accessible to people using screen readers. <code>direction</code> attribute takes two values, <code>horizontal</code> and <code>vertical</code>, both of which are self-explanatory. when its value is invalid or not given, <code>direction</code> will default to <code>horizontal</code>.</p>  
+  <h3>slots</h3>
+  <p>there are only two slots: <code>image-1</code> and <code>image-2</code>. they can technically be any elements, but the intended and tested usage for them requires them to be images. <code>image-1</code> represents the left image in the horizontal direction while <code>image-2</code> represents the right image. in the vertical mode, <code>image-1</code> and <code>image-2</code> represent the top and the bottom pictures, respectively.</p>
+  <p>it is advised that the pictures have the same dimensions for the consistency of the comparison. if the images have different sizes, [idk what's gonna happen do something and document here].</p>
+  <h3>styling</h3>
+  <p>there is a lot of opportunities to style the comparison component. both slots have a corresponding, identically named <code>part</code> attributes in case you want to style it using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::part" target="_blank" rel="noopener noreferrer"><code>::part</code></a>. here are the rest of the css attributes:</p>
+  <pre><code>--image-1-filter: none; /* same as css's own <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter" target="_blank" rel="noopener noreferrer">filter</a> */
+--image-2-filter: none;
+[add more here later]</code></pre>
+  <h3></h3>
+  </main>
+</body>
+</html>
