@@ -4,8 +4,8 @@ export class ImageCompare extends LitElement {
   static styles = css`
     * {margin: 0;}
     :host {
-      --offsetX: 50%;
-      --offsetY: 50%;
+      --offsetX: var(--initial, 50%);
+      --offsetY: var(--initial, 50%);
       --divider-size: 2px;
       --divider-color: white;
       --thumb: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='1' viewBox='0 0 398 216' fill='none'%3E%3Cpath d='M297.51 0.019989L270.518 27.012L332.553 89.055H65.453L127.492 27.016L100.5 0.0239868L6.25399 94.739C-1.32411 102.317 -1.32411 114.157 6.25399 121.731L100.496 215.973L127.488 188.981L65.453 126.942H333.023L270.507 188.981L297.499 215.973L391.741 121.731C399.319 114.153 399.319 102.313 391.741 94.739L297.51 0.019989Z' fill='black'/%3E%3C/svg%3E");
@@ -50,11 +50,6 @@ export class ImageCompare extends LitElement {
       width: 100%;
       height: var(--divider-size);
       top: calc(var(--offsetY) - var(--divider-size) / 2);
-    }
-    .horizontal-thumb {
-      position: relative;
-      z-index: 100;
-      top: 20px;
     }
     .thumb-wrapper {
       position: relative;
