@@ -141,7 +141,6 @@ export class ImageCompare extends LitElement {
   }
 
   touchStart(event) {
-    console.log("TOUCHED!!", event, this.touchToMouseEvent(event));
     event.preventDefault();
     this.mouseDown(this.touchToMouseEvent(event));
   }
@@ -170,8 +169,8 @@ export class ImageCompare extends LitElement {
     const r = event.target.getBoundingClientRect();
     return {
       target: event.target,
-      offsetX: event.targetTouches[0].pageX - r.left,
-      offsetY: event.targetTouches[0].pageY - r.top,
+      offsetX: event.targetTouches[0].pageX - event.target.offsetLeft,
+      offsetY: event.targetTouches[0].pageY - event.target.offsetTop,
     }
   }
 }
