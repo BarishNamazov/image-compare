@@ -113,7 +113,8 @@ export class ImageCompare extends LitElement {
         }
       </style>
 
-      <span id="comparer" @mousedown=${this.mouseDown} @mouseup=${this.mouseUp} @mousemove=${this.mouseMove}>
+      <span id="comparer" @mousedown=${this.mouseDown} @mouseup=${this.mouseUp} @mousemove=${this.mouseMove}
+                          @touchstart=${this.touchStart} @touchend=${this.touchEnd} @touchmove=${this.touchMove}>
         <slot name="image-1"></slot>
         <slot name="image-2"></slot>
         <span class="vertical-line">
@@ -139,6 +140,22 @@ export class ImageCompare extends LitElement {
     this.updateOffsets(event);
   }
 
+  touchStart(event) {
+    console.log("TOUCHED!!", event, this.touchToMouseEvent(event));
+    event.preventDefault();
+    this.mouseDown(this.touchToMouseEvent(event));
+  }
+  
+  touchEnd(event) {
+    event.preventDefault();
+    this.mouseUp();
+  }
+
+  touchMove(event) {
+    event.preventDefault();
+    this.mouseMove(this.touchToMouseEvent(event));
+  }
+
   updateOffsets(event) {
     if (!this.#drag) return;
     const x = event.offsetX, y = event.offsetY;
@@ -147,6 +164,15 @@ export class ImageCompare extends LitElement {
     const newY = Math.max(0, Math.min(100, y / height * 100));
     this.style.setProperty("--offsetX", `${newX}%`);
     this.style.setProperty("--offsetY", `${newY}%`);
+  }
+
+  touchToMouseEvent(event) {
+    const r = event.target.getBoundingClientRect();
+    return {
+      target: event.target,
+      offsetX: event.targetTouches[0].pageX - r.left,
+      offsetY: event.targetTouches[0].pageY - r.top,
+    }
   }
 }
 
