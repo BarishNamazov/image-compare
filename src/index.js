@@ -4,6 +4,7 @@ export class ImageCompare extends LitElement {
   static styles = css`
     * {margin: 0;}
     :host {
+      display: block;
       --offsetX: var(--initial, 50%);
       --offsetY: var(--initial, 50%);
       --divider-size: 2px;
@@ -15,6 +16,7 @@ export class ImageCompare extends LitElement {
       --thumb-border: 2px solid black;
     }
     #comparer {
+      margin: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
