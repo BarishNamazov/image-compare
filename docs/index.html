@@ -34,8 +34,10 @@
       color: hsl(60, 30%, 96%);
     }
     a * {
-      
       text-decoration: underline;
+    }
+    a {
+      color: inherit;
     }
   </style>
 </head>
@@ -43,10 +45,11 @@
   <main>
     <h1>image-compare</h1>
     <p><em>want to compare two images side by side with possibly applying some effects to them? say no more!</em></p>
-    <h2>installation</h2>
+    <a href="#examples">i don't want blob of technical text, take me to the cool stuff!</a>
+    <h2 id="installation">installation</h2>
     <p>add the following line of code to the cool project you are working on:</p>
-    <pre><code>&lt;script src=&quot;[insert js file link here]&quot;&gt;&lt;/script&gt;</code></pre>
-    <h2>usage</h2>
+    <pre><code>&lt;script type="module" src=&quot;https://cdn.jsdelivr.net/gh/barishnamazov/image-compare@main/src/index.js&quot;&gt;&lt;/script&gt;</code></pre>
+    <h2 id="usage">usage</h2>
     <p>now you can use <code>image-compare</code> like any other tag:</p>
     <pre><code>&lt;image-compare alt=&quot;Alt text for comparison&quot; direction=&quot;horizontal&quot;&gt;
   &lt;img src=&quot;cat.png&quot; slot=&quot;image-1&quot;/&gt;
@@ -57,13 +60,23 @@
   <p>there are two reflected attribute properties: <code>alt</code> and <code>direction</code>. <code>alt</code> attribute is not visible and its purpose is to make this element accessible to people using screen readers. <code>direction</code> attribute takes two values, <code>horizontal</code> and <code>vertical</code>, both of which are self-explanatory. when its value is invalid or not given, <code>direction</code> will default to <code>horizontal</code>.</p>  
   <h3>slots</h3>
   <p>there are only two slots: <code>image-1</code> and <code>image-2</code>. they can technically be any elements, but the intended and tested usage for them requires them to be images. <code>image-1</code> represents the left image in the horizontal direction while <code>image-2</code> represents the right image. in the vertical mode, <code>image-1</code> and <code>image-2</code> represent the top and the bottom pictures, respectively.</p>
-  <p>it is advised that the pictures have the same dimensions for the consistency of the comparison. if the images have different sizes, [idk what's gonna happen do something and document here].</p>
+  <p>it is advised that the pictures have the same dimensions for the consistency of the comparison. if the images have different sizes, <code>image-2</code> will be resized to have the same dimensions as <code>image-1</code>. this will not work well with non-image elements.</p>
   <h3>styling</h3>
-  <p>there is a lot of opportunities to style the comparison component. both slots have a corresponding, identically named <code>part</code> attributes in case you want to style it using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::part" target="_blank" rel="noopener noreferrer"><code>::part</code></a>. here are the rest of the css attributes:</p>
-  <pre><code>--image-1-filter: none; /* same as css's own <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter" target="_blank" rel="noopener noreferrer">filter</a> */
+  <p>first, note that <code>image-compare</code> is a block-level element, but you can change it freely to make your project as cool as possible. there is a lot of opportunities to style the comparison component. you can choose to style images, but <code>filter</code> functions for them are also provided. below are the css variables that should be used for the best results.</p>
+  <pre><code>--initial: 50%; /* the initial exposure of image-1 */
+--image-1-filter: none; /* same as css's own <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter" target="_blank" rel="noopener noreferrer">filter</a> */
 --image-2-filter: none;
-[add more here later]</code></pre>
-  <h3></h3>
+--divider-size: 2px;
+--divider-color: white;
+--thumb: /* omitted svg data */;
+--thumb-size: 2em;
+--thumb-background-color: white;
+--thumb-opacity: 0.9;
+--thumb-border: 2px solid black;
+</code></pre>
+  <h2 id="examples">examples</h2>
+  <p>check here later</p>
   </main>
+  <script src="https://cdn.jsdelivr.net/gh/barishnamazov/image-compare@main/src/index.js" type="module"></script>
 </body>
 </html>
