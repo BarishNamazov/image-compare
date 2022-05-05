@@ -39,6 +39,9 @@
     a {
       color: inherit;
     }
+    image-compare {
+      margin: auto;
+    }
   </style>
 </head>
 <body>
@@ -75,8 +78,43 @@
 --thumb-border: 2px solid black;
 </code></pre>
   <h2 id="examples">examples</h2>
-  <p>check here later</p>
+  <p>thanks to <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">unsplash</a>, we have most of the pictures below.</p>
+
+  <article>
+    <h3>juxtapose your favorite views</h2>
+    <pre><code>&lt;image-compare alt="tree in the dawn and the night"&gt;
+      &lt;img src=&quot;../examples/tree1.png&quot; slot=&quot;image-1&quot; width=&quot;400px&quot;/&gt;
+      &lt;img src=&quot;../examples/tree2.png&quot; slot=&quot;image-2&quot;/&gt;
+&lt;/image-compare&gt;</code></pre>
+    <image-compare>
+      <img src="../examples/tree1.png" alt="tree in the night" slot="image-1" width="400px"/>
+      <img src="../examples/tree2.png" alt="tree in the morning" slot="image-2"/>
+    </image-compare>
+  </article>
+  <article>
+    <h3>go vertical</h3>
+    <pre><code>&lt;image-compare direction=&quot;vertical&quot;&gt;
+      &lt;img src=&quot;../examples/lilypads.jpeg&quot; slot=&quot;image-1&quot; width=&quot;400px&quot;/&gt;
+      &lt;img src=&quot;../examples/hydrangea.jpeg&quot; slot=&quot;image-2&quot;&gt;
+&lt;/image-compare&gt;</code></pre>
+    <image-compare direction="vertical">
+      <img src="../examples/lilypads.jpeg" alt="lilypads" slot="image-1" width="400px"/>
+      <img src="../examples/hydrangea.jpeg" alt="hydrangea" slot="image-2">
+    </image-compare>
+  </article>
+  <article>
+    <h3>filter it</h3>
+    <pre><code>&lt;image-compare style=&quot;--image-2-filter: blur(1px) grayscale(50%) hue-rotate(90deg);&quot;&gt;
+      &lt;img src=&quot;../examples/3d-spiral.avif&quot; width=&quot;400px&quot; slot=&quot;image-1&quot;/&gt;
+      &lt;img src=&quot;../examples/3d-spiral.avif&quot; width=&quot;400px&quot; slot=&quot;image-2&quot;/&gt;
+&lt;/image-compare&gt;
+</code></pre>
+    <image-compare style="--image-2-filter: blur(1px) grayscale(50%) hue-rotate(90deg);">
+      <img src="../examples/3d-spiral.avif" width="400px" slot="image-1"/>
+      <img src="../examples/3d-spiral.avif" width="400px" slot="image-2"/>
+    </image-compare>
+  </article>
   </main>
-  <script src="https://cdn.jsdelivr.net/gh/barishnamazov/image-compare@main/src/index.js" type="module"></script>
+  <script src="../src/index.js" type="module"></script>
 </body>
 </html>
