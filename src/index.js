@@ -114,7 +114,8 @@ export class ImageCompare extends LitElement {
       </style>
 
       <span id="comparer" @mousedown=${this.mouseDown} @mouseup=${this.mouseUp} @mousemove=${this.mouseMove}
-                          @touchstart=${this.touchStart} @touchend=${this.touchEnd} @touchmove=${this.touchMove}>
+                          @touchstart=${this.touchStart} @touchend=${this.touchEnd} @touchmove=${this.touchMove}
+            aria-label=${this.alt}>
         <slot name="image-1"></slot>
         <slot name="image-2"></slot>
         <span class="vertical-line">
