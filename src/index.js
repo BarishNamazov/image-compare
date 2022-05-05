@@ -7,9 +7,14 @@ export class ImageCompare extends LitElement {
       --offsetX: 50%;
       --offsetY: 50%;
       --divider-size: 2px;
-      --divider-color: red;
+      --divider-color: white;
+      --thumb: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='1' viewBox='0 0 398 216' fill='none'%3E%3Cpath d='M297.51 0.019989L270.518 27.012L332.553 89.055H65.453L127.492 27.016L100.5 0.0239868L6.25399 94.739C-1.32411 102.317 -1.32411 114.157 6.25399 121.731L100.496 215.973L127.488 188.981L65.453 126.942H333.023L270.507 188.981L297.499 215.973L391.741 121.731C399.319 114.153 399.319 102.313 391.741 94.739L297.51 0.019989Z' fill='black'/%3E%3C/svg%3E");
+      --thumb-size: 2em;
+      --thumb-background-color: white;
+      --thumb-opacity: 0.9;
+      --thumb-border: 2px solid black;
     }
-    span {
+    #comparer {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -44,7 +49,39 @@ export class ImageCompare extends LitElement {
     .horizontal-line {
       width: 100%;
       height: var(--divider-size);
-      top: calc(var(--offsetY) - var(--divider-size) / 2);;
+      top: calc(var(--offsetY) - var(--divider-size) / 2);
+    }
+    .horizontal-thumb {
+      position: relative;
+      z-index: 100;
+      top: 20px;
+    }
+    .thumb-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+    }
+    .thumb {
+      z-index: 1000; 
+      position: absolute;
+      display: inline-block;
+      filter: var(--thumb-filter);
+      background: var(--thumb);
+      background-size: 80%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: var(--thumb-background-color);
+      height: var(--thumb-size); 
+      width: var(--thumb-size);
+      border-radius: 50%;
+      border: var(--thumb-border);
+      opacity: var(--thumb-opacity);
+    }
+    .rotate {
+      transform: rotate(90deg);
     }
   `;
 
@@ -65,22 +102,29 @@ export class ImageCompare extends LitElement {
   render() {
     return html`
       <style>
-      .${this.direction === "vertical" ? "vertical" : "horizontal"}-line {
-        display: none;
-      }
-      slot[name="image-2"]::slotted(*) {
-        clip-path: polygon(${this.direction !== "vertical" ? 
-                      `var(--offsetX) 0, 100% 0, 100% 100%, var(--offsetX) 100%` : 
-                      `0 var(--offsetY), 100% var(--offsetY), 100% 100%, 0 100%`
-                    });
-      }
+        #comparer {
+          cursor: ${this.direction === "vertical" ? "row-resize" : "col-resize"};
+        }
+        .${this.direction === "vertical" ? "vertical" : "horizontal"}-line {
+          display: none;
+        }
+        slot[name="image-2"]::slotted(*) {
+          clip-path: polygon(${this.direction !== "vertical" ? 
+                        `var(--offsetX) 0, 100% 0, 100% 100%, var(--offsetX) 100%` : 
+                        `0 var(--offsetY), 100% var(--offsetY), 100% 100%, 0 100%`
+                      });
+        }
       </style>
 
-      <span @mousedown=${this.mouseDown} @mouseup=${this.mouseUp} @mousemove=${this.mouseMove}>
+      <span id="comparer" @mousedown=${this.mouseDown} @mouseup=${this.mouseUp} @mousemove=${this.mouseMove}>
         <slot name="image-1"></slot>
         <slot name="image-2"></slot>
-        <span class="vertical-line"></span>
-        <span class="horizontal-line"></span>
+        <span class="vertical-line">
+          <span class="thumb-wrapper"> <span class="thumb"></span> </span>
+        </span>
+        <span class="horizontal-line">
+        <span class="thumb-wrapper"> <span class="thumb rotate"></span> </span>
+        </span>
       </span>
     `;
   }
