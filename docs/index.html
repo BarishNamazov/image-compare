@@ -39,8 +39,9 @@
     a {
       color: inherit;
     }
-    image-compare {
-      margin: auto;
+    img {
+      width: 400px;
+      max-width: 80vw;
     }
   </style>
 </head>
@@ -78,40 +79,73 @@
 --thumb-border: 2px solid black;
 </code></pre>
   <h2 id="examples">examples</h2>
-  <p>thanks to <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">unsplash</a>, we have most of the pictures below.</p>
+  <p>thanks to <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">unsplash</a>, we have most of the pictures below. note the following css is applies to all <code>img</code> tags below to make sure you get to see them nicely. in addition, all the images are <a href="https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading" target="_blank" rel="noopener noreferrer">lazy loaded</a>, but that detail is omitted in the example codes.</p>
+  <pre><code>img {
+  width: 400px;
+  max-width: 80vw;
+}
+</code></pre>
 
   <article>
     <h3>juxtapose your favorite views</h2>
     <pre><code>&lt;image-compare alt="tree in the dawn and the night"&gt;
-      &lt;img src=&quot;../examples/tree1.png&quot; slot=&quot;image-1&quot; width=&quot;400px&quot;/&gt;
-      &lt;img src=&quot;../examples/tree2.png&quot; slot=&quot;image-2&quot;/&gt;
+  &lt;img src=&quot;../examples/tree1.png&quot; slot=&quot;image-1&quot;/&gt;
+  &lt;img src=&quot;../examples/tree2.png&quot; slot=&quot;image-2&quot;/&gt;
 &lt;/image-compare&gt;</code></pre>
     <image-compare>
-      <img src="../examples/tree1.png" alt="tree in the night" slot="image-1" width="400px"/>
-      <img src="../examples/tree2.png" alt="tree in the morning" slot="image-2"/>
+      <img src="../examples/tree1.png" alt="tree in the night" slot="image-1" loading="lazy"/>
+      <img src="../examples/tree2.png" alt="tree in the morning" slot="image-2" loading="lazy"/>
     </image-compare>
   </article>
   <article>
     <h3>go vertical</h3>
     <pre><code>&lt;image-compare direction=&quot;vertical&quot;&gt;
-      &lt;img src=&quot;../examples/lilypads.jpeg&quot; slot=&quot;image-1&quot; width=&quot;400px&quot;/&gt;
-      &lt;img src=&quot;../examples/hydrangea.jpeg&quot; slot=&quot;image-2&quot;&gt;
+  &lt;img src=&quot;../examples/lilypads.jpeg&quot; slot=&quot;image-1&quot;/&gt;
+  &lt;img src=&quot;../examples/hydrangea.jpeg&quot; slot=&quot;image-2&quot;&gt;
 &lt;/image-compare&gt;</code></pre>
     <image-compare direction="vertical">
-      <img src="../examples/lilypads.jpeg" alt="lilypads" slot="image-1" width="400px"/>
-      <img src="../examples/hydrangea.jpeg" alt="hydrangea" slot="image-2">
+      <img src="../examples/lilypads.jpeg" alt="lilypads" slot="image-1" loading="lazy"/>
+      <img src="../examples/hydrangea.jpeg" alt="hydrangea" slot="image-2" loading="lazy">
     </image-compare>
   </article>
   <article>
     <h3>filter it</h3>
     <pre><code>&lt;image-compare style=&quot;--image-2-filter: blur(1px) grayscale(50%) hue-rotate(90deg);&quot;&gt;
-      &lt;img src=&quot;../examples/3d-spiral.png&quot; width=&quot;400px&quot; slot=&quot;image-1&quot;/&gt;
-      &lt;img src=&quot;../examples/3d-spiral.png&quot; width=&quot;400px&quot; slot=&quot;image-2&quot;/&gt;
+  &lt;img src=&quot;../examples/3d-spiral.png&quot; slot=&quot;image-1&quot;/&gt;
+  &lt;img src=&quot;../examples/3d-spiral.png&quot; slot=&quot;image-2&quot;/&gt;
 &lt;/image-compare&gt;
 </code></pre>
     <image-compare style="--image-2-filter: blur(1px) grayscale(50%) hue-rotate(90deg);">
-      <img src="../examples/3d-spiral.png" width="400px" slot="image-1"/>
-      <img src="../examples/3d-spiral.png" width="400px" slot="image-2"/>
+      <img src="../examples/3d-spiral.png" slot="image-1" loading="lazy"/>
+      <img src="../examples/3d-spiral.png" slot="image-2" loading="lazy"/>
+    </image-compare>
+  </article>
+  <article>
+    <h3>change divider color and size</h3>
+    <pre><code>&lt;image-compare style=&quot;--divider-color: black; --image-2-filter: saturate(5);&quot;&gt;
+  &lt;img src=&quot;../examples/colored-cacti.jpg&quot; slot=&quot;image-1&quot;/&gt;
+  &lt;img src=&quot;../examples/colored-cacti.jpg&quot; slot=&quot;image-2&quot;/&gt;
+&lt;/image-compare&gt;</code></pre>
+    <image-compare style="--divider-color: black; --divider-size: 5px; --image-2-filter: saturate(5);">
+      <img src="../examples/colored-cacti.jpg" slot="image-1" loading="lazy"/>
+      <img src="../examples/colored-cacti.jpg" slot="image-2" loading="lazy"/>
+    </image-compare>
+  </article>
+  <article>
+    <h3>customize the thumb</h3>
+    <pre><code>&lt;image-compare style=&quot;
+      --thumb-size: 3em; 
+      --thumb-opacity: 1; 
+      --thumb-background-color: green; 
+      --thumb-border: 5px solid navy; 
+      --image-2-filter: invert(1)
+      &quot;&gt;
+  &lt;img src=&quot;../examples/lights.jpg&quot; slot=&quot;image-1&quot;&gt;
+  &lt;img src=&quot;../examples/lights.jpg&quot; slot=&quot;image-2&quot;&gt;
+&lt;/image-compare&gt;</code></pre>
+    <image-compare style="--thumb-size: 3em; --thumb-opacity: 1; --thumb-background-color: green; --thumb-border: 5px solid navy; --image-2-filter: invert(1)">
+      <img src="../examples/lights.jpg" slot="image-1" loading="lazy">
+      <img src="../examples/lights.jpg" slot="image-2" loading="lazy">
     </image-compare>
   </article>
   </main>
